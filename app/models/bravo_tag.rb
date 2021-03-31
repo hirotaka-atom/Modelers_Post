@@ -1,0 +1,2 @@
+class BravoTag < ApplicationRecord
+end

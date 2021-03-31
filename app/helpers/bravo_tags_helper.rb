@@ -1,0 +1,2 @@
+module BravoTagsHelper
+end
