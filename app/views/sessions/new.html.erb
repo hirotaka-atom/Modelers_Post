@@ -1,2 +1,12 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<%= form_for :session, url: login_path do |f| %>
+  <div class="form-group">
+    <%= f.label :email, class: "text-white" %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, class: "text-white" %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+
+  <%= f.submit "ログイン", class: "btn-block btn-white" %>
+<% end %>
