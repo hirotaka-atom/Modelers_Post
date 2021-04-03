@@ -1,0 +1,18 @@
+<%= form_for @post do |f| %>
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title, class: 'text-white' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content, class: 'text-white' %>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+
+  <%= f.submit '投稿を編集する', class: 'btn btn-black btn-block' %>
+<% end %>

@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_141539) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "title"
+    t.string "title", default: "タイトルなし"
     t.integer "post_tag_id"
     t.string "image"
     t.text "content"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_141539) do
     t.string "email"
     t.string "password_digest"
     t.boolean "admin", default: false
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

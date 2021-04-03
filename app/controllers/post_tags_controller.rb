@@ -14,6 +14,6 @@ class PostTagsController < ApplicationController
   def update
   end
 
-  def delete
+  def destroy
   end
 end
