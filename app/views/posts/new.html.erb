@@ -1,2 +1,18 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<%= form_for @post do |f| %>
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title, class: 'text-white' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content, class: 'text-white' %>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+
+  <%= f.submit '新規投稿する', class: 'btn btn-black btn-block' %>
+<% end %>

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user=User.new(user_params)
     #@user.image="default_icon.jpg"
     if @user.save
-      redirect_to root_path,  success: '登録が完了しました'
+      redirect_to root_path,  success: "登録が完了しました"
     else
       flash.now[:danger]="登録に失敗しました"
       render :new
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).delete
+    User.find(params[:id]).destroy
     redirect_to root_path, success: "ユーザーを削除しました"
   end
 
