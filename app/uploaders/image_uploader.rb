@@ -38,9 +38,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def extension_allowlist
   #   %w(jpg jpeg gif png)
   # end
-<<<<<<< HEAD
-
-=======
   def extension_allowlist
     %w(jpg jpeg png)
   end
@@ -48,7 +45,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   def size_range
     1..10.megabytes
   end
->>>>>>> Post
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
