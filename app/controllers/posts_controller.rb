@@ -14,11 +14,13 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts=Post.all.order(created_at: :desc)
+    @posts=Post.order(created_at: :desc)
   end
 
   def show
     @post=Post.find(params[:id])
+    @comment=Comment.new #コメント新規作成用
+    #@comments=@post.comments　#コメント一覧表示用
   end
 
   def edit

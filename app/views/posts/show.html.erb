@@ -1,1 +1,29 @@
 <%= link_to '投稿を削除する', post_path(id: @post.id), method: :delete %>
+
+<%= form_with model: [@post, @comment], local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content, class: 'text-white' %>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'コメントする', class: 'btn btn-black btn-block' %>
+<% end %>
+
+<% if !@post.bravo_users.include?(current_user) %>
+  <%= link_to 'いいねする', bravos_path(post_id: @post.id), method: :post %>
+<% else %>
+  <%= link_to 'いいねを解除する', unbravos_path(post_id: @post.id), method: :delete %>
+<% end %>
+<%= Bravo.where(post_id: @post.id).count %>
+
+<% if !@post.favorite_users.include?(current_user) %>
+  <%= link_to 'お気に入り登録する', favorites_path(post_id: @post.id), method: :post %>
+<% else %>
+  <%= link_to 'お気に入りを解除する', unfavorites_path(post_id: @post.id), method: :delete %>
+<% end %>
+<%= Favorite.where(post_id: @post.id).count %>

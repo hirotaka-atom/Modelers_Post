@@ -9,7 +9,16 @@ class User < ApplicationRecord
   has_secure_password
   acts_as_paranoid
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :bravos, dependent: :destroy
+  has_many :bravo_posts, through: :bravos, source: 'post'
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: 'post'
+
+  def is_admin?
+    return self.admin
+  end
 
   mount_uploader :image, ImageUploader
 end

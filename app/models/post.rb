@@ -1,9 +1,13 @@
 class Post < ApplicationRecord
   validates :title, presence: true, length: {maximum: 40}
   validates :content, presence: true, length: {maximum: 280}
-  validates :user_id, presence: true
 
   belongs_to :user
+  has_many :comments, dependent: :destroy
+  has_many :bravos
+  has_many :bravo_users, through: :bravos, source: 'user', dependent: :destroy
+  has_many :favorites
+  has_many :favorite_users, through: :favorites, source: 'user', dependent: :destroy
 
   mount_uploader :image, ImageUploader
 end

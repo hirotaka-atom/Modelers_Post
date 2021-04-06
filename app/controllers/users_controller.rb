@@ -5,9 +5,8 @@ class UsersController < ApplicationController
 
   def create
     @user=User.new(user_params)
-    #@user.image="default_icon.jpg"
     if @user.save
-      redirect_to root_path,  success: "登録が完了しました"
+      redirect_to root_path, success: "登録が完了しました"
     else
       flash.now[:danger]="登録に失敗しました"
       render :new
@@ -15,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users=User.all.order(created_at: :desc)
+    @users=User.order(created_at: :desc)
   end
 
   def show
