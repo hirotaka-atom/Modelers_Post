@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 2021_03_31_141539) do
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["bravo_tag_id"], name: "index_bravos_on_bravo_tag_id"
+    t.index ["post_id"], name: "index_bravos_on_post_id"
+    t.index ["user_id"], name: "index_bravos_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -58,6 +61,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_141539) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_tag_id"], name: "index_posts_on_post_tag_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def new
     @post=Post.new
+    @post_tags=PostTag.all
   end
 
   def create
@@ -19,12 +20,11 @@ class PostsController < ApplicationController
 
   def show
     @post=Post.find(params[:id])
-    @comment=Comment.new #コメント新規作成用
-    #@comments=@post.comments　#コメント一覧表示用
   end
 
   def edit
     @post=Post.find(params[:id])
+    @post_tags=PostTag.all
   end
 
   def update
@@ -39,11 +39,11 @@ class PostsController < ApplicationController
 
   def destroy
     Post.find(params[:id]).delete
-    redirect_to posts_path, success: "投稿を削除しました。"
+    redirect_to posts_path, success: "投稿を削除しました"
   end
 
   private
     def post_params
-      params.require(:post).permit(:title, :post_tag_id, :image, :content,)
+      params.require(:post).permit(:title, :image, :content, :post_tag_id)
     end
 end

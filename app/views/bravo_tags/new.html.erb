@@ -1,0 +1,9 @@
+<%= form_for @bravo_tag do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, class: 'text-white' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'いいね用タグを作成する', class: 'btn btn-black btn-block' %>
+<% end %>

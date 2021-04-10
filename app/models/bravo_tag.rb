@@ -1,2 +1,5 @@
 class BravoTag < ApplicationRecord
+  validates :name, presence:true, uniqueness: true
+
+  has_many :bravos
 end

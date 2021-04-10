@@ -1,15 +1,41 @@
 class BravosController < ApplicationController
-  def index
-    @bravo_posts=current_user.bravo_posts
+  def new
+    @post=Post.find(params[:post_id])
+    @bravo=Bravo.new
+    @bravo_tags=BravoTag.all
   end
 
   def create
-    @bravo=Bravo.new
-    @bravo.user_id=current_user.id
-    @bravo.post_id=params[:post_id]
-    @bravo.save
-    @post=Post.find(@bravo.post_id)
-    redirect_to @post, success: '投稿にいいねしました'
+    @post=Post.find(params[:post_id])
+    @bravo = current_user.bravos.new(bravo_params)
+    @bravo.post_id = params[:post_id]
+    if @bravo.save
+      redirect_to @bravo.post, success: '投稿にいいねしました'
+    else
+      flash.now[:danger]="いいねに失敗しました"
+      render :new
+    end
+  end
+
+  def index
+    @bravo_posts=Bravo.order(created_at: :desc)
+  end
+
+  def edit
+    @post=Post.find(params[:post_id])
+    @bravo=Bravo.find(params[:id])
+    @bravo_tags=BravoTag.all
+  end
+
+  def update
+    @post=Post.find(params[:post_id])
+    @bravo = Bravo.find(params[:id])
+    if @bravo.update(bravo_params)
+      redirect_to @bravo.post, success: "いいねの内容を編集しました"
+    else
+      flash.now[:danger] = "いいねの内容の編集に失敗しました"
+      render :edit
+    end
   end
 
   def destroy
@@ -18,4 +44,9 @@ class BravosController < ApplicationController
     @bravo.delete
     redirect_to @post, success: 'いいねを解除しました'
   end
+
+  private
+    def bravo_params
+      params.require(:bravo).permit(:bravo_tag_id)
+    end
 end

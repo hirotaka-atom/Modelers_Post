@@ -1,0 +1,13 @@
+<%= form_with model: [@post, @comment], local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content, class: 'text-white' %>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'コメントする', class: 'btn btn-black btn-block' %>
+<% end %>

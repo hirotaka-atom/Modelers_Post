@@ -1,0 +1,9 @@
+<%= form_with model: [@post, @bravo], local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :tag, class: 'text-white' %>
+    <%= f.collection_select :bravo_tag_id, @bravo_tags, :id, :name, {include_blank: "タグを選択してください"}, class: 'form-control' %>
+  </div>
+
+
+  <%= f.submit '編集を保存する', class: 'btn btn-black btn-block' %>
+<% end %>

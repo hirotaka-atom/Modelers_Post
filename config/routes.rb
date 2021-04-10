@@ -15,15 +15,12 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments
+    resources :bravos
   end
 
-  get 'bravos/index'
-  post '/bravos', to: 'bravos#create'
-  delete '/unbravos', to: 'bravos#destroy'
+  resources :bravos
 
-  get 'favorites/index'
-  post '/favorites', to: 'favorites#create'
-  delete '/unfavorites', to: 'favorites#destroy'
+  resources :favorites
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

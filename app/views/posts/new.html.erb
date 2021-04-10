@@ -10,9 +10,15 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :tag, class: 'text-white' %>
+    <%= f.collection_select :post_tag_id, @post_tags, :id, :name, {include_blank: "タグを選択してください"}, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :content, class: 'text-white' %>
     <%= f.text_area :content, class: 'form-control' %>
   </div>
+
 
   <%= f.submit '新規投稿する', class: 'btn btn-black btn-block' %>
 <% end %>

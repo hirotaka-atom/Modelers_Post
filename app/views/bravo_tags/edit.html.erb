@@ -1,0 +1,11 @@
+<%= form_for @bravo_tag do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, class: 'text-white' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'いいね用タグを編集する', class: 'btn btn-black btn-block' %>
+<% end %>
+
+<%= link_to 'いいね用タグを削除する', bravo_tag_path(id: @bravo_tag.id), method: :delete %>

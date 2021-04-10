@@ -3,7 +3,8 @@ class Post < ApplicationRecord
   validates :content, presence: true, length: {maximum: 280}
 
   belongs_to :user
-  has_many :comments, dependent: :destroy
+  belongs_to :post_tag
+  has_many :comments
   has_many :bravos
   has_many :bravo_users, through: :bravos, source: 'user', dependent: :destroy
   has_many :favorites

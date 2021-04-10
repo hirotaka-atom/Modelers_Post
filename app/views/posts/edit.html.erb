@@ -10,6 +10,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :tag, class: 'text-white' %>
+    <%= f.select :post_tag_id, @post_tags.map { |tag| [tag.name, tag.id] }, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :content, class: 'text-white' %>
     <%= f.text_area :content, class: 'form-control' %>
   </div>

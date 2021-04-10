@@ -1,4 +1,9 @@
 class CommentsController < ApplicationController
+  def new
+    @post=Post.find(params[:post_id])
+    @comment=Comment.new
+  end
+
   def create
     @post=Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
@@ -7,7 +12,7 @@ class CommentsController < ApplicationController
       redirect_to @comment.post, success: "コメントを投稿しました"
     else
       flash.now[:danger] = "コメントの投稿に失敗しました"
-      render 'posts/show'
+      render :new
     end
   end
 
@@ -38,7 +43,7 @@ class CommentsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     Comment.find(params[:id]).delete
-    redirect_to @post, success: "コメントを削除しました。"
+    redirect_to @post, success: "コメントを削除しました"
   end
 
   private
