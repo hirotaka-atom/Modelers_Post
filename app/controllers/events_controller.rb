@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+
   def new
   end
 
@@ -6,6 +7,9 @@ class EventsController < ApplicationController
   end
 
   def index
+    agent = Mechanize.new
+    page = agent.get("http://plamo.kitasite.net/event/")
+    @elements = page.search('.entry-content a')
   end
 
   def show

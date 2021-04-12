@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
   def new
-    @post=Post.find(params[:post_id])
-    @comment=Comment.new
+    @post = Post.find(params[:post_id])
+    @comment = Comment.new
   end
 
   def create
-    @post=Post.find(params[:post_id])
+    @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
     @comment.post_id = params[:post_id]
     if @comment.save
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   end
 
   def index
-    @comments=Comment.order(created_at: :desc)
+    @comments = Comment.order(created_at: :desc)
   end
 
   def show

@@ -1,36 +1,36 @@
 class UsersController < ApplicationController
   def new
-    @user=User.new
+    @user = User.new
   end
 
   def create
-    @user=User.new(user_params)
+    @user = User.new(user_params)
     if @user.save
       redirect_to root_path, success: "登録が完了しました"
     else
-      flash.now[:danger]="登録に失敗しました"
+      flash.now[:danger] = "登録に失敗しました"
       render :new
     end
   end
 
   def index
-    @users=User.order(created_at: :desc)
+    @users = User.order(created_at: :desc)
   end
 
   def show
-    @user=User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def edit
-    @user=User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
-    @user=User.find(params[:id])
+    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to @user, success: "情報を編集しました"
     else
-      flash.now[:danger]="情報の編集に失敗しました"
+      flash.now[:danger] = "情報の編集に失敗しました"
       render :edit
     end
   end
