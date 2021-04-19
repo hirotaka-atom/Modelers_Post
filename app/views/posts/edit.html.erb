@@ -1,23 +1,30 @@
-<%= form_for @post do |f| %>
-  <div class="form-group">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
+<div class="posts-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-center title-text">新規投稿</h1>
+          <%= form_for @post do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+            <div class="form-group">
+              <%= f.label :image %>
+              <%= f.file_field :image %>
+            </div>
+            <div class="form-group">
+              <%= f.label :title, "タイトル" %>
+              <%= f.text_field :title, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :tag, "投稿タグ" %>
+              <%= f.select :post_tag_id, PostTag.all.map { |tag| [tag.name, tag.id] }, {}, {class: 'form-control'} %>
+            </div>
+            <div class="form-group">
+              <%= f.label :content, "本文" %>
+              <%= f.text_area :content, class: 'form-control' %>
+            </div>
 
-  <div class="form-group">
-    <%= f.label :title, class: 'text-white' %>
-    <%= f.text_field :title, class: 'form-control' %>
+            <%= f.submit '投稿を編集する', class: 'btn-block' %>
+          <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="form-group">
-    <%= f.label :tag, class: 'text-white' %>
-    <%= f.select :post_tag_id, @post_tags.map { |tag| [tag.name, tag.id] }, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :content, class: 'text-white' %>
-    <%= f.text_area :content, class: 'form-control' %>
-  </div>
-
-  <%= f.submit '投稿を編集する', class: 'btn btn-black btn-block' %>
-<% end %>
+</div>

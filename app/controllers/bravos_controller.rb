@@ -1,4 +1,6 @@
 class BravosController < ApplicationController
+  before_action :set_post_search_query
+
   def new
     @post = Post.find(params[:post_id])
     @bravo = Bravo.new

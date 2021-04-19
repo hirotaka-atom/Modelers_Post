@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :set_post_search_query
+
   def new
   end
 
@@ -8,7 +10,7 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to root_path, success: "ログインに成功しました"
     else
-      flash.now[:danger] = "ログインに失敗しました"
+      flash.now[:danger] = "メールアドレスまたはパスワードが間違っています"
       render :new
     end
   end

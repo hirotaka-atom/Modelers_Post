@@ -2,10 +2,14 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
-gem 'bootstrap-sass'
-gem "carrierwave"
+
 gem 'paranoia'
 gem 'mechanize'
+gem 'impressionist'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+gem 'rails-i18n'
+gem 'ransack'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3'
 # Use sqlite3 as the database for Active Record
@@ -14,6 +18,7 @@ gem 'rails', '~> 6.1.3'
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
+gem 'bootstrap-sass'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -24,10 +29,9 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt'
-
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem "carrierwave"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

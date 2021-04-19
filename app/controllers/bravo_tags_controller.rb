@@ -1,4 +1,6 @@
 class BravoTagsController < ApplicationController
+  before_action :set_post_search_query
+  
   def new
     @bravo_tag = BravoTag.new
   end

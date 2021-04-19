@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  get 'search/index'
+
   resources :users
   #resources :posts
   #resources :comments
@@ -14,11 +16,14 @@ Rails.application.routes.draw do
   resources :bravo_tags
 
   resources :posts do
+    collection do
+      get 'search'
+    end
     resources :comments
     resources :bravos
   end
 
-  resources :bravos
+  #resources :bravos
 
   resources :favorites
 

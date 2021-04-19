@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+  before_action :set_post_search_query
+
   def index
     @favorite_posts = current_user.favorite_posts
   end

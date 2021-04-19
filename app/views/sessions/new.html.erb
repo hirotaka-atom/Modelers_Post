@@ -1,12 +1,21 @@
-<%= form_for :session, url: login_path do |f| %>
-  <div class="form-group">
-    <%= f.label :email, class: "text-white" %>
-    <%= f.text_field :email, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password, class: "text-white" %>
-    <%= f.password_field :password, class: "form-control" %>
-  </div>
+<div class="sessions-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-center title-text">ログイン</h1>
+          <%= form_for :session, url: login_path do |f| %>
+            <div class="form-group">
+              <%= f.label :email, "メールアドレス" %>
+              <%= f.text_field :email, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password, "パスワード" %>
+              <%= f.password_field :password, class: "form-control" %>
+            </div>
 
-  <%= f.submit "ログイン", class: "btn-block btn-white" %>
-<% end %>
+            <%= f.submit "ログイン", class: "btn-block btn-white" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

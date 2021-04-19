@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
-  validates :title, presence: true, length: {maximum: 40}
-  validates :content, presence: true, length: {maximum: 280}
+  is_impressionable
+  validates :title, presence: true, length: {maximum: 30}
+  validates :content, presence: true, length: {maximum: 252}
 
   belongs_to :user
   belongs_to :post_tag

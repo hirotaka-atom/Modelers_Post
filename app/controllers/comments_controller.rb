@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :set_post_search_query
+
   def new
     @post = Post.find(params[:post_id])
     @comment = Comment.new
@@ -17,7 +19,7 @@ class CommentsController < ApplicationController
   end
 
   def index
-    @comments = Comment.order(created_at: :desc)
+    #@comments = Comment.order(created_at: :desc)
   end
 
   def show

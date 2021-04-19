@@ -1,20 +1,30 @@
-<%= form_for @user do |f| %>
-  <div class="form-group">
-    <%= f.label :name, class: 'text-white' %>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :email, class: 'text-white' %>
-    <%= f.text_field :email, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password, class: 'text-white' %>
-    <%= f.password_field :password, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password_confirmation, class: 'text-white' %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-  </div>
+<div class="users-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-center title-text">新規登録</h1>
+        <%= form_for @user do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <div class="form-group">
+            <%= f.label :name, "名前" %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email, "メールアドレス" %>
+            <%= f.text_field :email, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, "パスワード" %>
+            <%= f.password_field :password, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation, "パスワード確認" %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+          </div>
 
-  <%= f.submit "登録", class: 'btn-block btn-white' %>
-<% end %>
+          <%= f.submit "登録", class: 'btn-block btn-white' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 class PostTagsController < ApplicationController
+  before_action :set_post_search_query
+  
   def new
     @post_tag = PostTag.new
   end

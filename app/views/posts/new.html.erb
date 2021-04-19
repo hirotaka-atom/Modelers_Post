@@ -1,24 +1,49 @@
-<%= form_for @post do |f| %>
-  <div class="form-group">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
+<div class="posts-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-center title-text">新規投稿</h1>
+          <%= form_for @post do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+            <div class="form-group">
+              <%= f.label :image, "画像の添付" %>
+              <%= f.file_field :image %>
+            </div>
+            <div class="form-group">
+              <%= f.label :title, "タイトル" %>
+              <%= f.text_field :title, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :tag, "投稿タグ" %>
+              <%= f.collection_select :post_tag_id, PostTag.all, :id, :name, {include_blank: "タグを選択してください"}, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :content, "本文" %>
+              <%= f.text_area :content, class: 'form-control' %>
+            </div>
+
+            <%= f.submit '新規投稿する', class: 'btn-block' %>
+          <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-6">
+            11111
+          </div>
+          <div class="col-md-6">
+            22222
+          </div>
+        </div>
+        aaaaaa
+      </div>
+      <div class="col-md-4">
+        abc
+      </div>
+      <div class="col-md-4">
+        defg
+      </div>
+    </div>
   </div>
-
-  <div class="form-group">
-    <%= f.label :title, class: 'text-white' %>
-    <%= f.text_field :title, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :tag, class: 'text-white' %>
-    <%= f.collection_select :post_tag_id, @post_tags, :id, :name, {include_blank: "タグを選択してください"}, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :content, class: 'text-white' %>
-    <%= f.text_area :content, class: 'form-control' %>
-  </div>
-
-
-  <%= f.submit '新規投稿する', class: 'btn btn-black btn-block' %>
-<% end %>
+</div>

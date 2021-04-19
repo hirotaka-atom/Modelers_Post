@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :logged_in?
 
+  def set_post_search_query
+    @q = Post.ransack(params[:q])
+    @results = @q.result(distinct: true)
+  end
+
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end

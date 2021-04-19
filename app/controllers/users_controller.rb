@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_post_search_query
+
   def new
     @user = User.new
   end
@@ -8,17 +10,19 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path, success: "登録が完了しました"
     else
-      flash.now[:danger] = "登録に失敗しました"
       render :new
     end
   end
 
   def index
-    @users = User.order(created_at: :desc)
+    @users = User.page(params[:page]).per(20).order(created_at: :desc)
   end
 
   def show
     @user = User.find(params[:id])
+    @posts = Post.where(user_id: params[:id]).page(params[:page]).per(10)
+    @bravo_posts = @user.bravo_posts.page(params[:page]).per(10)
+    @favorite_posts = @user.favorite_posts.page(params[:page]).per(10)
   end
 
   def edit
@@ -30,7 +34,6 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, success: "情報を編集しました"
     else
-      flash.now[:danger] = "情報の編集に失敗しました"
       render :edit
     end
   end

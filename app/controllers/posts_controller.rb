@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
+  impressionist :action=> [:show], unique: [:impressionable_id, :ip_address]
+  before_action :set_post_search_query
+
   def new
     @post = Post.new
-    @post_tags = PostTag.all
   end
 
   def create
@@ -9,13 +11,14 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, success: "新規投稿しました"
     else
-      flash.now[:danger] = "新規投稿に失敗しました"
       render :new
     end
   end
 
   def index
-    @posts = Post.order(created_at: :desc)
+    @posts = Post.page(params[:page]).per(10).order(created_at: :desc)
+    @q = Post.ransack(params[:q])
+    @results = @q.result.page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def show
@@ -24,7 +27,6 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    @post_tags = PostTag.all
   end
 
   def update
@@ -32,7 +34,6 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post, success: "投稿を編集しました"
     else
-      flash.now[:danger] = "投稿の編集に失敗しました"
       render :edit
     end
   end
