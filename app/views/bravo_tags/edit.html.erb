@@ -1,11 +1,18 @@
-<%= form_for @bravo_tag do |f| %>
+<div class="posts-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-center title-text">いいね用タグ編集</h1>
+        <%= form_for @bravo_tag do |f| %>
 
-  <div class="form-group">
-    <%= f.label :name, class: 'text-white' %>
-    <%= f.text_field :name, class: 'form-control' %>
+          <div class="form-group">
+            <%= f.label :name, class: 'text-white' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+
+          <%= f.submit '投稿用タグを編集する', class: 'btn btn-black btn-block' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <%= f.submit 'いいね用タグを編集する', class: 'btn btn-black btn-block' %>
-<% end %>
-
-<%= link_to 'いいね用タグを削除する', bravo_tag_path(id: @bravo_tag.id), method: :delete %>
+</div>

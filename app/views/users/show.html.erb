@@ -9,7 +9,9 @@
         <div class="form-bottom">
           <p><%= link_to '編集', edit_post_path(id: @user.id) %></p>
           <p><%= link_to 'ユーザーの削除', user_path(id: @user.id), method: :delete %></p>
+          <p><%= link_to '投稿用タグ一覧', post_tags_path %></p>
           <p><%= link_to '投稿用タグ作成', new_post_tag_path %></p>
+          <p><%= link_to 'いいね用タグ一覧', bravo_tags_path %></p>
           <p><%= link_to 'いいね用タグ作成', new_bravo_tag_path %></p>
           <p><%= link_to 'イベント作成', '#' %></p>
         </div>

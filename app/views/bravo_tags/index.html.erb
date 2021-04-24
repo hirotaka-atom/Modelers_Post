@@ -1,2 +1,33 @@
-<h1>BravoTags#index</h1>
-<p>Find me in app/views/bravo_tags/index.html.erb</p>
+<div class="users-new-wrapper text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h1 class=" title-text">いいね用タグ一覧</h1>
+        <h4 class="new_tag-link"><%= link_to 'いいね用タグ作成', new_bravo_tag_path %></h4>
+        <h4><%= paginate @bravo_tags %></h4>
+        <ul class="tags">
+          <% @bravo_tags.each do |bravo_tag| %>
+            <li class="tag-info">
+              <div class="tag-details">
+                <div class="row">
+                  <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-6">
+                      <h3><%= bravo_tag.name %></h3>
+                    </div>
+                    <div class="col-md-3 pt-5">
+                      <p><%= link_to '編集', edit_bravo_tag_path(id: bravo_tag.id) %><p>
+                    </div>
+                    <div class="col-md-3">
+                      <p><%= link_to '削除', bravo_tag_path(id: bravo_tag.id), method: :delete %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+        <h4><%= paginate @bravo_tags %></h4>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 <div class="posts-new-wrapper">
   <div class="container">
         <h1 class="text-center title-text">検索結果</h1>
+        <% if @q.present? %>
         <h4 class="text-center"><%= paginate @results %></h4>
         <div class="posts">
           <% @results.each do |post| %>
@@ -23,5 +24,8 @@
           <% end %>
         </div>
         <h4 class="text-center"><%= paginate @results %><h4>
+          <% else %>
+          <h3 class="text-center">該当する投稿がありません</h3>
+        <% end %>
   </div>
 </div>

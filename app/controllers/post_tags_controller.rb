@@ -1,6 +1,6 @@
 class PostTagsController < ApplicationController
   before_action :set_post_search_query
-  
+
   def new
     @post_tag = PostTag.new
   end
@@ -16,7 +16,7 @@ class PostTagsController < ApplicationController
   end
 
   def index
-    @post_tags = PostTag.order(created_at: :desc)
+    @post_tags = PostTag.page(params[:page]).per(20).order(created_at: :desc)
   end
 
   def edit

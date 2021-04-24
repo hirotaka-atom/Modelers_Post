@@ -143,3 +143,28 @@
     float: right;
   }
 }
+
+//post_tags/index, bravo_tags/index
+.new_tag-link {
+  display: inline-block;
+  margin-bottom: 40px;
+}
+.tags{
+  list-style: none;
+  .tag-info {
+    padding: 10px;
+    margin-bottom: 30px;
+    border:1px solid #CCC;
+    border-radius: 4px;
+    .tag-details {
+    a {
+      word-break: break-all;
+      font-size: 1.5em;
+      }
+    p {
+      display: inline-block;
+      margin-top: 20px;
+      }
+    }
+  }
+}

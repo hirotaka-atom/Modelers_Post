@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
   def set_post_search_query
+    #if params[:q].present?
+      #params[:q] == params[:q][:user_name_or_post_tag_name_or_title_or_content_cont].split(/[\p{blank}\s]+/)
+    #end
     @q = Post.ransack(params[:q])
     @results = @q.result(distinct: true)
   end

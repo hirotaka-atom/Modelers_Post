@@ -1,9 +1,18 @@
-<%= form_for @post_tag do |f| %>
+<div class="posts-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-center title-text">投稿タグ新規作成</h1>
+        <%= form_for @post_tag do |f| %>
 
-  <div class="form-group">
-    <%= f.label :name, class: 'text-white' %>
-    <%= f.text_field :name, class: 'form-control' %>
+          <div class="form-group">
+            <%= f.label :name, class: 'text-white' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+
+          <%= f.submit '投稿用タグを作成する', class: 'btn btn-black btn-block' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <%= f.submit '投稿用タグを作成する', class: 'btn btn-black btn-block' %>
-<% end %>
+</div>

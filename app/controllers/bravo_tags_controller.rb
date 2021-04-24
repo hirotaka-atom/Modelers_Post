@@ -1,6 +1,6 @@
 class BravoTagsController < ApplicationController
   before_action :set_post_search_query
-  
+
   def new
     @bravo_tag = BravoTag.new
   end
@@ -16,7 +16,7 @@ class BravoTagsController < ApplicationController
   end
 
   def index
-    @bravo_tags = BravoTag.order(created_at: :desc)
+    @bravo_tags = BravoTag.page(params[:page]).per(20).order(created_at: :desc)
   end
 
   def edit

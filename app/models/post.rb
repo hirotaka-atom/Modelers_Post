@@ -11,5 +11,5 @@ class Post < ApplicationRecord
   has_many :favorites
   has_many :favorite_users, through: :favorites, source: 'user', dependent: :destroy
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, ImageUploader2
 end
