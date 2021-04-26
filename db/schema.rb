@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2021_04_17_162436) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "image"
     t.text "content"
     t.integer "user_id"
     t.integer "post_id"

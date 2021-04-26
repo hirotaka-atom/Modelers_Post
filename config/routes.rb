@@ -9,21 +9,14 @@ Rails.application.routes.draw do
   get 'search/index'
 
   resources :users
-  #resources :posts
-  #resources :comments
   resources :events
   resources :post_tags
   resources :bravo_tags
 
   resources :posts do
-    collection do
-      get 'search'
-    end
     resources :comments
     resources :bravos
   end
-
-  #resources :bravos
 
   resources :favorites
 

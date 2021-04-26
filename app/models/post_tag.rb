@@ -1,5 +1,5 @@
 class PostTag < ApplicationRecord
-  validates :name, presence:true, uniqueness: true
+  validates :name, presence:true, uniqueness: true, length: {maximum: 20}
 
   has_many :posts
 end

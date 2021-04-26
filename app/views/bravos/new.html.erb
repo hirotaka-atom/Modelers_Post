@@ -1,9 +1,19 @@
-<%= form_with model: [@post, @bravo], local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :tag, class: 'text-white' %>
-    <%= f.collection_select :bravo_tag_id, @bravo_tags, :id, :name, {include_blank: "タグを選択してください"}, class: 'form-control' %>
+<div class="posts-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-center title-text">いいねタグの選択</h1>
+        <%= form_with model: [@post, @bravo], local: true do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <div class="form-group">
+            <%= f.label :tag, "いいねタグ" %>
+            <%= f.collection_select :bravo_tag_id, BravoTag.all, :id, :name, {include_blank: "タグを選択してください"}, class: 'form-control' %>
+          </div>
+
+
+          <%= f.submit 'いいねする', class: 'btn btn-black btn-block' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-
-  <%= f.submit 'いいねする', class: 'btn btn-black btn-block' %>
-<% end %>
+</div>

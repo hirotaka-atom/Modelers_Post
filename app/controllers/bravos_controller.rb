@@ -4,7 +4,6 @@ class BravosController < ApplicationController
   def new
     @post = Post.find(params[:post_id])
     @bravo = Bravo.new
-    @bravo_tags = BravoTag.all
   end
 
   def create
@@ -14,30 +13,12 @@ class BravosController < ApplicationController
     if @bravo.save
       redirect_to @bravo.post, success: '投稿にいいねしました'
     else
-      flash.now[:danger] = "いいねに失敗しました"
       render :new
     end
   end
 
   def index
-    @bravo_posts = Bravo.order(created_at: :desc)
-  end
-
-  def edit
-    @post = Post.find(params[:post_id])
-    @bravo = Bravo.find(params[:id])
-    @bravo_tags = BravoTag.all
-  end
-
-  def update
-    @post = Post.find(params[:post_id])
-    @bravo = Bravo.find(params[:id])
-    if @bravo.update(bravo_params)
-      redirect_to @bravo.post, success: "いいねの内容を編集しました"
-    else
-      flash.now[:danger] = "いいねの内容の編集に失敗しました"
-      render :edit
-    end
+    @bravos = Bravo.where(post_id: params[:post_id]).page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def destroy

@@ -1,13 +1,18 @@
-<%= form_with model: [@post, @comment], local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
+<div class="posts-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-center title-text">コメント作成</h1>
+        <%= form_with model: [@post, @comment], local: true do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <div class="form-group">
+            <%= f.label :content, "本文" %>
+            <%= f.text_area :content, class: 'form-control' %>
+          </div>
 
-  <div class="form-group">
-    <%= f.label :content, class: 'text-white' %>
-    <%= f.text_area :content, class: 'form-control' %>
+          <%= f.submit 'コメントする', class: 'btn btn-black btn-block' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <%= f.submit 'コメントする', class: 'btn btn-black btn-block' %>
-<% end %>
+</div>

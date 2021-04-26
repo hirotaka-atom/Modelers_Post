@@ -119,21 +119,14 @@
 //posts/show
 .post-action {
   height: 75px;
-  .post-bravo {
+  .post-menu {
     margin-right: 25px;
     float: left;
     a {
       font-size: 1.5em;
     }
   }
-  .post-favorite {
-    margin-right: 25px;
-    float: left;
-    a {
-      font-size: 1.5em;
-    }
-  }
-  .post-delete {
+  .post-menu-end {
     float: left;
     a {
       font-size: 1.5em;
@@ -145,25 +138,61 @@
 }
 
 //post_tags/index, bravo_tags/index
-.new_tag-link {
+.new_tag_link {
   display: inline-block;
   margin-bottom: 40px;
 }
-.tags{
+
+.tags {
   list-style: none;
   .tag-info {
     padding: 10px;
     margin-bottom: 30px;
     border:1px solid #CCC;
     border-radius: 4px;
-    .tag-details {
-    a {
+    h3 {
       word-break: break-all;
+    }
+    p {
+      margin-top: 20px;
       font-size: 1.5em;
       }
-    p {
-      display: inline-block;
-      margin-top: 20px;
+  }
+}
+
+//comments/index
+
+.comments{
+  list-style: none;
+  h3 {
+    padding: 40px;
+  }
+  p {
+    word-break: break-all;
+    font-size: 1.4em;
+  }
+  .tag-info {
+    padding: 10px;
+    margin-bottom: 30px;
+    border:1px solid #CCC;
+    border-radius: 4px;
+    .user-details {
+      img {
+        height: 150px;
+        width: 150px;
+      }
+      p {
+        margin-top: 20px;
+        font-size: 1.5em;
+      }
+    }
+    .comment-details {
+      img {
+        height: 190px;
+        width: 190px;
+      }
+      p {
+        margin-top: 30px;
       }
     }
   }

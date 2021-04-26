@@ -13,17 +13,12 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @comment.post, success: "コメントを投稿しました"
     else
-      flash.now[:danger] = "コメントの投稿に失敗しました"
       render :new
     end
   end
 
   def index
-    #@comments = Comment.order(created_at: :desc)
-  end
-
-  def show
-    @comment = Comment.find(params[:id])
+    @comments = Comment.where(post_id: params[:post_id]).page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def edit
@@ -37,7 +32,6 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to @comment.post, success: "コメントを編集しました"
     else
-      flash.now[:danger] = "コメントの編集に失敗しました"
       render :edit
     end
   end

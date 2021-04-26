@@ -10,7 +10,6 @@ class BravoTagsController < ApplicationController
     if @bravo_tag.save
       redirect_to bravo_tags_path, success: "いいね用タグを作成しました"
     else
-      flash.now[:danger] = "いいね用タグ作成に失敗しました"
       render :new
     end
   end
@@ -28,7 +27,6 @@ class BravoTagsController < ApplicationController
     if @bravo_tag.update(bravo_tag_params)
       redirect_to bravo_tags_path, success: "いいね用タグを編集しました"
     else
-      flash.now[:danger] = "いいね用タグの編集に失敗しました"
       render :edit
     end
   end

@@ -2,7 +2,7 @@ class FavoritesController < ApplicationController
   before_action :set_post_search_query
 
   def index
-    @favorite_posts = current_user.favorite_posts
+    @favorites = Favorite.where(post_id: params[:post_id]).page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def create

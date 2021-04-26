@@ -1,0 +1,22 @@
+<div class="posts-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-center title-text">イベント作成</h1>
+        <%= form_for @event do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <div class="form-group">
+            <%= f.label :name, "イベント名" %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :url, 'URL' %>
+            <%= f.text_field :url, class: 'form-control' %>
+          </div>
+
+          <%= f.submit 'イベント作成', class: 'btn btn-black btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

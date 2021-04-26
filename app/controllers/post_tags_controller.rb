@@ -10,7 +10,6 @@ class PostTagsController < ApplicationController
     if @post_tag.save
       redirect_to post_tags_path, success: "投稿用タグを作成しました"
     else
-      flash.now[:danger] = "投稿用タグ作成に失敗しました"
       render :new
     end
   end
@@ -28,7 +27,6 @@ class PostTagsController < ApplicationController
     if @post_tag.update(post_tag_params)
       redirect_to post_tags_path, success: "投稿用タグを編集しました"
     else
-      flash.now[:danger] = "投稿用タグの編集に失敗しました"
       render :edit
     end
   end

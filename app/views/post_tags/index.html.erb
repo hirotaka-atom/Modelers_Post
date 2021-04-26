@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h1 class=" title-text">投稿用タグ一覧</h1>
-        <h4 class="new_tag-link"><%= link_to '投稿用タグ作成', new_post_tag_path %></h4>
+        <h4 class="new_tag_link"><%= link_to '投稿用タグ作成', new_post_tag_path %></h4>
         <h4><%= paginate @post_tags %></h4>
         <ul class="tags">
           <% @post_tags.each do |post_tag| %>
@@ -14,7 +14,7 @@
                     <div class="col-md-6">
                       <h3><%= post_tag.name %></h3>
                     </div>
-                    <div class="col-md-3 pt-5">
+                    <div class="col-md-3">
                       <p><%= link_to '編集', edit_post_tag_path(id: post_tag.id) %><p>
                     </div>
                     <div class="col-md-3">
