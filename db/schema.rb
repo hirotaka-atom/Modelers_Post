@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2021_04_17_162436) do
     t.string "image"
     t.text "content"
     t.integer "user_id"
+    t.integer "impressions_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_tag_id"], name: "index_posts_on_post_tag_id"

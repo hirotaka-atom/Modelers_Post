@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  is_impressionable
+  is_impressionable counter_cache: true
   validates :title, presence: true, length: {maximum: 30}
   validates :content, presence: true, length: {maximum: 252}
 

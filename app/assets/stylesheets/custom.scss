@@ -178,8 +178,8 @@
     border-radius: 4px;
     .user-details {
       img {
-        height: 150px;
-        width: 150px;
+        height: 130px;
+        width: 130px;
       }
       p {
         margin-top: 20px;
@@ -194,6 +194,25 @@
       p {
         margin-top: 30px;
       }
+    }
+  }
+}
+
+//pages/top
+
+.top-info {
+  padding:40px 10px 10px 10px;
+  margin-bottom: 30px;
+  border:1px solid #CCC;
+  border-radius: 4px;
+  .top-post-info {
+    p {
+      word-break: break-all;
+    }
+    margin-bottom: 30px;
+    img {
+      height: 100px;
+      width: 100px;
     }
   }
 }

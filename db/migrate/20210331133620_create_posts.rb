@@ -6,6 +6,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.string :image
       t.text :content
       t.integer :user_id
+      t.integer :impressions_count, default: 0
 
       t.timestamps
     end

@@ -22,7 +22,7 @@
                         <div class="col-md-10 col-md-offset-1">
                           <div class="row">
                             <div class="col-md-6">
-                              <p><%= comment.created_at %></p>
+                              <p><%= comment.created_at.to_s(:datetime_jp) %></p>
                             </div>
                             <div class="col-md-3">
                               <p><%= link_to 'コメントの編集', edit_post_comment_path(id: comment.id) %><p>
