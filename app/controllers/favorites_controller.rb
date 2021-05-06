@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :set_post_search_query
+  before_action :authenticate_user, except: [:index]
 
   def index
     @favorites = Favorite.where(post_id: params[:post_id]).page(params[:page]).per(10).order(created_at: :desc)

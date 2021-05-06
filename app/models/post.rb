@@ -5,11 +5,11 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :post_tag
-  has_many :comments
-  has_many :bravos
-  has_many :bravo_users, through: :bravos, source: 'user', dependent: :destroy
-  has_many :favorites
-  has_many :favorite_users, through: :favorites, source: 'user', dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :bravos, dependent: :destroy
+  has_many :bravo_users, through: :bravos, source: 'user'
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: 'user'
 
   mount_uploader :image, ImageUploader2
 end

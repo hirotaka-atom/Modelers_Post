@@ -1,5 +1,6 @@
 class PostTagsController < ApplicationController
   before_action :set_post_search_query
+  before_action :authenticate_admin
 
   def new
     @post_tag = PostTag.new

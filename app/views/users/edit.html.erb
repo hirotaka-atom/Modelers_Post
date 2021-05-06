@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-offset-4 col-md-4">
-        <h1 class="text-center title-text">新規登録</h1>
+        <h1 class="text-center title-text">ユーザー情報編集</h1>
           <%= form_for @user do |f| %>
             <%= render 'layouts/error_messages', model: f.object %>
             <div class="form-group">
@@ -11,7 +11,8 @@
             </div>
             <div class="form-group">
               <%= f.label :image, "ユーザーアイコン" %>
-              <%= f.file_field :image %>
+              <%= f.file_field :image, id: 'img' %>
+              <%= image_tag @user.image.url, id: 'img_prev' %>
             </div>
             <div class="form-group">
               <%= f.label :email, "メールアドレス" %>

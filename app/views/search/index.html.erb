@@ -1,31 +1,43 @@
-<div class="posts-new-wrapper">
+<div class="posts-new-wrapper text-center">
   <div class="container">
         <h1 class="text-center title-text">検索結果</h1>
-        <% if @q.present? %>
-        <h4 class="text-center"><%= paginate @results %></h4>
+        <% if @results.present? %>
+        <h4><%= paginate @results %></h4>
         <div class="posts">
           <% @results.each do |post| %>
-            <div class="post-info">
-              <div class="user-details">
-                <%= image_tag post.user.image.url %>
-                <p class="text-center"><%= link_to post.user.name, post.user %></p>
+          <div class="post-info">
+            <div class="row">
+            <div class="user-details col-md-2">
+              <%= image_tag post.user.image.url %>
+              <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <p><%= link_to post.user.name, post.user %></p>
               </div>
-              <div class="post-details">
-                <div class="text-center post-title">
-                  <h5><%= link_to post.title, post %></h5>
-                  <h7>投稿タグ: <%= post.post_tag.name %></h7>
+              </div>
+            </div>
+            <div class="post-details col-md-10">
+              <div>
+                <h3><%= link_to post.title, post %></h3>
+                <h7>投稿タグ: <%= post.post_tag.name %></h7>
+              </div>
+              <div class="post-contents">
+                <div class="row">
+                <div class="col-md-4">
+                <%= image_tag post.image.url %>
                 </div>
-                <div class="post-contents">
-                  <%= image_tag post.image.url %>
+                <div class="text-left col-md-8">
                   <p><%= post.content %></p>
+                </div>
                 </div>
               </div>
             </div>
+            </div>
+          </div>
           <% end %>
         </div>
-        <h4 class="text-center"><%= paginate @results %><h4>
+        <h4><%= paginate @results %><h4>
           <% else %>
-          <h3 class="text-center">該当する投稿がありません</h3>
+          <h3>該当する投稿がありません</h3>
         <% end %>
   </div>
 </div>

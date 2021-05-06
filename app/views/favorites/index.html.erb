@@ -1,20 +1,30 @@
-<div class="users-new-wrapper">
+<div class="users-new-wrapper text-center">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h1 class="text-center title-text">お気に入り登録したユーザー</h1>
-        <h4 class="text-center"><%= paginate @favorites %></h4>
+        <h1 class="title-text">お気に入り登録したユーザー</h1>
+        <% if @favorites.present? %>
+        <h4><%= paginate @favorites %></h4>
         <ul class="users">
           <% @favorites.each do |favorite| %>
             <li class="user-info">
               <div class="user-details">
-                <%= image_tag favorite.user.image.url %>
-                <%= link_to favorite.user.name, favorite.user %>
+                <div class="row">
+                  <div class="col-md-4">
+                    <%= image_tag favorite.user.image.url %>
+                  </div>
+                  <div class="col-md-8">
+                    <h3><%= link_to favorite.user.name, favorite.user %></h3>
+                  </div>
+                </div>
               </div>
             </li>
           <% end %>
         </ul>
-        <h4 class="text-center"><%= paginate @favorites %></h4>
+        <h4><%= paginate @favorites %></h4>
+        <% else %>
+          <h3>まだお気に入り登録されていません</h3>
+        <% end %>
       </div>
     </div>
   </div>

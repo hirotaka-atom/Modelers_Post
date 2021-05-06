@@ -1,62 +1,77 @@
-<div class="posts-new-wrapper">
+<div class="posts-new-wrapper text-center">
   <div class="container">
   <div class="posts">
     <div class="post-info">
-      <div class="user-details">
+      <div class="row">
+      <div class="user-details col-md-2">
         <%= image_tag @post.user.image.url %>
-        <p class="text-center"><%= link_to @post.user.name, @post.user %></p>
+        <div class="col-md-6 col-md-offset-3">
+          <p><%= link_to @post.user.name, @post.user %></p>
+        </div>
       </div>
-      <div class="post-details">
-        <div class="text-center post-title">
+      <div class="post-details col-md-10">
+        <div>
           <h3><%= @post.title %></h3>
           <h7>投稿タグ: <%= @post.post_tag.name %></h7>
         </div>
         <div class="post-contents">
-          <%= image_tag @post.image.url %>
-          <p><%= @post.content %></p>
+          <div class="col-md-4">
+            <%= image_tag @post.image.url %>
+          </div>
+          <div class="text-left col-md-8">
+            <p><%= @post.content %></p>
+          </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
-  <div class="text-center post-action">
-  <div class="post-menu">
+  <div class="row">
+  <div class="post-action col-md-10">
+  <div class="row">
+  <div class="post-menu col-md-2">
   <% if !@post.bravo_users.include?(current_user) %>
-  <%= link_to 'いいねする', new_post_bravo_path(post_id: @post.id) %>
+    <%= link_to 'いいねする', new_post_bravo_path(post_id: @post.id) %>
   <% else %>
-    <%= link_to 'いいねを解除する', post_bravo_path(post_id: @post.id), method: :delete %>
+    <%= link_to 'いいねの解除', post_bravo_path(post_id: @post.id), method: :delete %>
   <% end %>
-  <p>いいね数: <%= Bravo.where(post_id: @post.id).count %></p>
-  <%= link_to 'いいねしたユーザー', post_bravos_path(post_id: @post.id) %>
+  <%= link_to post_bravos_path(post_id: @post.id) do %>
+    <p>いいね数: <%= Bravo.where(post_id: @post.id).count %></p>
+  <% end %>
   </div>
-  <div class="post-menu">
+  <div class="post-menu col-md-4">
   <% if !@post.favorite_users.include?(current_user) %>
     <%= link_to 'お気に入り登録する', favorites_path(post_id: @post.id), method: :post %>
   <% else %>
-    <%= link_to 'お気に入りを解除する', favorite_path(post_id: @post.id), method: :delete %>
+    <%= link_to 'お気に入りの解除', favorite_path(post_id: @post.id), method: :delete %>
   <% end %>
-  <p>お気に入り登録者数: <%= Favorite.where(post_id: @post.id).count %></p>
-  <%= link_to 'お気に入り登録したユーザー', favorites_path(post_id: @post.id) %>
+  <%= link_to favorites_path(post_id: @post.id) do %>
+    <p>お気に入り登録者数: <%= Favorite.where(post_id: @post.id).count %><p>
+  <% end %>
   </div>
-  <div class="post-menu">
-    <%= link_to 'コメント一覧', post_comments_path(post_id: @post.id) %>
-    <p>コメント数: <%= Comment.where(post_id: @post.id).count %></p>
-  </div>
-  <div class="post-menu">
+  <div class="post-menu col-md-2">
     <%= link_to 'コメントする', new_post_comment_path(post_id: @post.id) %>
+    <%= link_to post_comments_path(post_id: @post.id) do %>
+      <p>コメント数: <%= Comment.where(post_id: @post.id).count %></p>
+    <% end %>
   </div>
-  <div class="post-menu">
-    <%= link_to '投稿の編集', edit_post_path(id: @post.id) %>
+  <% if current_user.present? && current_user.id == @post.user_id %>
+  <div class="post-menu col-md-3">
+    <p class="col-md-6"><%= link_to '編集', edit_post_path(id: @post.id) %></p>
+    <p class="col-md-6"><%= link_to '削除', post_path(id: @post.id), method: :delete %></p>
   </div>
-  <div class="post-menu-end">
-    <%= link_to '投稿を削除する', post_path(id: @post.id), method: :delete %>
+  <% end %>
   </div>
-  <div class="post-view">
+  </div>
+  <div class="post-view col-md-2">
     <h1>閲覧数: <%= @post.impressionist_count %></h1>
   </div>
   </div>
-  <div class="bravo-details">
+  <div class="bravo-details text-left">
     <h3>いいねの詳細</h3>
-
+    <% @bravo_tags.each do |bravo_tag| %>
+      <p><%= bravo_tag.name %> : <%= @post.bravos.where(bravo_tag: bravo_tag).count %></p>
+    <% end %>
   </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :set_post_search_query
+  before_action :forbid_login_user, except: [:destroy]
 
   def new
   end

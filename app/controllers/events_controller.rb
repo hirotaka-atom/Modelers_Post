@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
     before_action :set_post_search_query
+    before_action :authenticate_admin, except: [:index]
 
   def new
     @event = Event.new

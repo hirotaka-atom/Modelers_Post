@@ -1,5 +1,6 @@
 class BravosController < ApplicationController
   before_action :set_post_search_query
+  before_action :authenticate_user, except: [:index]
 
   def new
     @post = Post.find(params[:post_id])

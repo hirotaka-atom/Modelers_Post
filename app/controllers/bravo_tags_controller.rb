@@ -1,5 +1,6 @@
 class BravoTagsController < ApplicationController
   before_action :set_post_search_query
+  before_action :authenticate_admin
 
   def new
     @bravo_tag = BravoTag.new

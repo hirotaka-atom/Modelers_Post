@@ -10,17 +10,18 @@
             <li class="tag-info">
               <div class="tag-details">
                 <div class="row">
-                  <div class="col-md-10 col-md-offset-1">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                       <h3><%= bravo_tag.name %></h3>
                     </div>
                     <div class="col-md-3">
+                      <p>使用数: <%= bravo_tag.bravos.count %></p>
+                    </div>
+                    <div class="col-md-2">
                       <p><%= link_to '編集', edit_bravo_tag_path(id: bravo_tag.id) %><p>
                     </div>
-                    <div class="col-md-3">
-                      <p><%= link_to '削除', bravo_tag_path(id: bravo_tag.id), method: :delete %></p>
+                    <div class="col-md-2">
+                      <p><%= link_to '削除', bravo_tag_path(id: bravo_tag.id), method: :delete, data: { confirm: "タグを削除してもよろしいですか？" } %></p>
                     </div>
-                  </div>
                 </div>
               </div>
             </li>

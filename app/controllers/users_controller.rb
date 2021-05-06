@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_post_search_query
+  before_action :authenticate_user, except: [:new, :create, :show]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_admin, only: [:index]
 
   def new
     @user = User.new

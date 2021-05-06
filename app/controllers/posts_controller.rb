@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   impressionist :action=> [:show], unique: [:impressionable_id, :ip_address]
   before_action :set_post_search_query
+  before_action :authenticate_user, except: [:index, :show]
+  before_action :ensure_correct_post, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -21,6 +23,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @bravo_tags=BravoTag.all
   end
 
   def edit

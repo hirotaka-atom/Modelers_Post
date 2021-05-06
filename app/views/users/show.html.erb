@@ -1,113 +1,162 @@
-<div class="users-new-wrapper">
+<div class="users-new-wrapper text-center">
   <div class="container">
-    <h1 class="text-center title-text">アカウント</h1>
+    <h1 class="title-text">アカウント</h1>
     <div class="users">
-      <div class="text-center account-info">
-        <%= image_tag @user.image.url %>
-        <h2><%= @user.name %></h2>
-        <p><%= @user.email %></p>
+      <div class="account-info">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <%= image_tag @user.image.url %>
+            <h2><%= @user.name %></h2>
+            <p><%= @user.email %></p>
+          </div>
+        </div>
         <div class="form-bottom">
-          <p><%= link_to '編集', edit_post_path(id: @user.id) %></p>
-          <p><%= link_to 'ユーザーの削除', user_path(id: @user.id), method: :delete %></p>
-          <p><%= link_to '投稿用タグ一覧', post_tags_path %></p>
-          <p><%= link_to '投稿用タグ作成', new_post_tag_path %></p>
-          <p><%= link_to 'いいね用タグ一覧', bravo_tags_path %></p>
-          <p><%= link_to 'いいね用タグ作成', new_bravo_tag_path %></p>
-          <p><%= link_to 'イベント作成', '#' %></p>
+          <% if current_user.present? && current_user.id == @user.id %>
+            <p><%= link_to '編集', edit_user_path(id: @user.id) %></p>
+            <p><%= link_to '削除', user_path(id: @user.id), method: :delete %></p>
+          <% end %>
+          <% if current_user.present? && current_user.admin == true %>
+            <p><%= link_to 'ユーザー一覧', users_path %></p>
+            <p><%= link_to '投稿用タグ一覧', post_tags_path %></p>
+            <p><%= link_to '投稿用タグ作成', new_post_tag_path %></p>
+            <p><%= link_to 'いいね用タグ一覧', bravo_tags_path %></p>
+            <p><%= link_to 'いいね用タグ作成', new_bravo_tag_path %></p>
+            <p><%= link_to 'イベント作成', new_event_path %></p>
+          <% end %>
         </div>
       </div>
     </div>
-    <div class="index">
-      <div class="posts-index">
+    <div class="row">
+    <div class="index col-md-10 col-md-offset-1">
+      <div class="row">
+      <div class="posts-index col-md-4">
         <h4 id="1">投稿一覧</h4>
       </div>
-      <div class="bravos-index">
+      <div class="bravos-index col-md-4">
         <h4 id="2">いいね一覧</h4>
       </div>
-      <div class="favorites-index">
+      <div class="favorites-index col-md-4">
         <h4 id="3">お気に入り一覧</h4>
       </div>
+      </div>
+    </div>
     </div>
     <div class="index-frame-p">
       <div class="posts">
         <% if @posts.present? %>
           <% @posts.each do |post| %>
             <div class="post-info">
-              <div class="user-details">
+              <div class="row">
+              <div class="user-details col-md-2">
                 <%= image_tag post.user.image.url %>
-                <p class="text-center"><%= link_to post.user.name, post.user %></p>
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-3">
+                    <p><%= link_to post.user.name, post.user %></p>
+                  </div>
+                </div>
               </div>
-              <div class="post-details">
-                <div class="text-center post-title">
-                  <h5><%= link_to post.title, post %></h5>
+              <div class="post-details col-md-10">
+                <div>
+                  <h3><%= link_to post.title, post %></h3>
                   <h7>投稿タグ: <%= post.post_tag.name %></h7>
                 </div>
                 <div class="post-contents">
-                  <%= image_tag post.image.url %>
-                  <p><%= post.content %></p>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <%= image_tag post.image.url %>
+                    </div>
+                    <div class="col-md-8">
+                      <p><%= post.content %></p>
+                    </div>
+                  </div>
                 </div>
+              </div>
               </div>
             </div>
           <% end %>
         <% else %>
-          <h3>投稿はありません</h3>
+          <h3>投稿がありません</h3>
         <% end %>
       </div>
-      <h4 class="text-center"><%= paginate @posts %></h4>
+      <h4><%= paginate @posts %></h4>
     </div>
     <div class="index-frame-b">
       <div class="posts">
         <% if @bravo_posts.present? %>
           <% @bravo_posts.each do |post| %>
-            <div class="post-info">
-              <div class="user-details">
-                <%= image_tag post.user.image.url %>
-                <p class="text-center"><%= link_to post.user.name, post.user %></p>
-              </div>
-              <div class="post-details">
-                <div class="text-center post-title">
-                  <h5><%= link_to post.title, post %></h5>
-                  <h7>投稿タグ: <%= post.post_tag.name %></h7>
-                </div>
-                <div class="post-contents">
-                  <%= image_tag post.image.url %>
-                  <p><%= post.content %></p>
+          <div class="post-info">
+            <div class="row">
+            <div class="user-details col-md-2">
+              <%= image_tag post.user.image.url %>
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <p><%= link_to post.user.name, post.user %></p>
                 </div>
               </div>
             </div>
+            <div class="post-details col-md-10">
+              <div>
+                <h3><%= link_to post.title, post %></h3>
+                <h7>投稿タグ: <%= post.post_tag.name %></h7>
+              </div>
+              <div class="post-contents">
+                <div class="row">
+                  <div class="col-md-4">
+                    <%= image_tag post.image.url %>
+                  </div>
+                  <div class="col-md-8">
+                    <p><%= post.content %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
           <% end %>
         <% else %>
-          <h3>いいねした投稿はありません</h3>
+          <h3>いいねした投稿がありません</h3>
         <% end %>
       </div>
-      <h4 class="text-center"><%= paginate @bravo_posts %></h4>
+      <h4><%= paginate @bravo_posts %></h4>
     </div>
     <div class="index-frame-f">
       <div class="posts">
         <% if @favorite_posts.present? %>
           <% @favorite_posts.each do |post| %>
-            <div class="post-info">
-              <div class="user-details">
-                <%= image_tag post.user.image.url %>
-                <p class="text-center"><%= link_to post.user.name, post.user %></p>
-              </div>
-              <div class="post-details">
-                <div class="text-center post-title">
-                  <h5><%= link_to post.title, post %></h5>
-                  <h7>投稿タグ: <%= post.post_tag.name %></h7>
-                </div>
-                <div class="post-contents">
-                  <%= image_tag post.image.url %>
-                  <p><%= post.content %></p>
+          <div class="post-info">
+            <div class="row">
+            <div class="user-details col-md-2">
+              <%= image_tag post.user.image.url %>
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <p><%= link_to post.user.name, post.user %></p>
                 </div>
               </div>
             </div>
+            <div class="post-details col-md-10">
+              <div>
+                <h3><%= link_to post.title, post %></h3>
+                <h7>投稿タグ: <%= post.post_tag.name %></h7>
+              </div>
+              <div class="post-contents">
+                <div class="row">
+                  <div class="col-md-4">
+                    <%= image_tag post.image.url %>
+                  </div>
+                  <div class="col-md-8">
+                    <p><%= post.content %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
           <% end %>
         <% else %>
-          <h3>お気に入り登録した投稿はありません</h3>
+          <h3>お気に入り登録した投稿がありません</h3>
         <% end %>
       </div>
-      <h4 class="text-center"><%= paginate @favorite_posts %></h4>
+      <h4><%= paginate @favorite_posts %></h4>
     </div>
   </div>
 </div>

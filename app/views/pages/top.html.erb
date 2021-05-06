@@ -4,16 +4,20 @@
       <div class="col-md-10 col-md-offset-1">
        <h1 class="title-text">新しい投稿はこちら</h1>
        <div class="top-info">
-         <div class="row">
-           <% @posts.each do |post| %>
-             <div class="col-md-2 top-post-info">
-               <%= image_tag post.image.url %>
-               <p><%= post.post_tag.name %>タグ<p>
-               <p><%= link_to post.title.truncate(11, omission: '...'), post %></p>
-             </div>
-           <% end %>
-         </div>
-         <h4><%= paginate @posts %></h4>
+         <% if @posts.present? %>
+          <div class="row">
+            <% @posts.each do |post| %>
+              <div class="col-md-2 top-post-info">
+                <%= image_tag post.image.url %>
+                <p><%= post.post_tag.name %>タグ</p>
+                <p><%= link_to post.title.truncate(11, omission: '...'), post %></p>
+              </div>
+            <% end %>
+          </div>
+          <h4><%= paginate @posts %></h4>
+        <% else %>
+          <h3>投稿がありません</h3>
+        <% end %>
        </div>
       </div>
     </div>
@@ -21,16 +25,20 @@
       <div class="col-md-10 col-md-offset-1">
        <h1 class="title-text">注目度ランキング</h1>
        <div class="ranking-info">
-         <div class="row">
-           <% @rankings.each.with_index(1) do |post, i| %>
-             <div class="col-md-4 top-post-info">
-               <h3><%= "#{i}" %>位</h3>
-               <%= image_tag post.image.url %>
-               <p><%= post.post_tag.name %>タグ<p>
-               <p><%= link_to post.title.truncate(11, omission: '...'), post %></p>
-             </div>
-           <% end %>
-         </div>
+         <% if @rankings.present? %>
+          <div class="row">
+            <% @rankings.each.with_index(1) do |post, i| %>
+              <div class="col-md-4 top-post-info">
+                <h3><%= "#{i}" %>位</h3>
+                <%= image_tag post.image.url %>
+                <p><%= post.post_tag.name %>タグ</p>
+                <p><%= link_to post.title.truncate(11, omission: '...'), post %></p>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <h3>投稿がありません</h3>
+        <% end %>
        </div>
       </div>
     </div>
@@ -38,16 +46,20 @@
       <div class="col-md-10 col-md-offset-1">
        <h1 class="title-text">まだ見られていない投稿はこちら</h1>
        <div class="top-info">
+        <% if @unlikes.present? %>
          <div class="row">
-           <% @unlikes.each do |post| %>
-             <div class="col-md-2 top-post-info">
-               <%= image_tag post.image.url %>
-               <p><%= post.post_tag.name %>タグ<p>
-               <p><%= link_to post.title.truncate(11, omission: '...'), post %></p>
-             </div>
-           <% end %>
+          <% @unlikes.each do |post| %>
+            <div class="col-md-2 top-post-info">
+              <%= image_tag post.image.url %>
+              <p><%= post.post_tag.name %>タグ<p>
+              <p><%= link_to post.title.truncate(11, omission: '...'), post %></p>
+            </div>
+          <% end %>
          </div>
          <h4><%= paginate @posts %></h4>
+        <% else %>
+          <h3>投稿がありません</h3>
+        <% end %>
        </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_post_search_query
+  before_action :authenticate_user, except: [:index]
+  before_action :ensure_correct_comment, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.find(params[:post_id])

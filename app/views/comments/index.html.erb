@@ -5,36 +5,45 @@
         <h1 class=" title-text">コメント一覧</h1>
         <h4><%= paginate @comments %></h4>
         <ul class="comments">
-          <% @comments.each do |comment| %>
-            <li class="tag-info">
+          <% if @comments.present? %>
+            <% @comments.each do |comment| %>
+              <li class="tag-info">
                 <div class="row">
-                    <div class="user-details col-md-3">
-                      <%= image_tag comment.user.image.url %>
-                      <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                          <p><%= link_to comment.user.name, comment.user %></p>
-                        </div>
+                  <div class="user-details col-md-3">
+                    <%= image_tag comment.user.image.url %>
+                    <div class="row">
+                      <div class="col-md-6 col-md-offset-3">
+                        <p><%= link_to comment.user.name, comment.user %></p>
                       </div>
                     </div>
-                    <div class="comment-details col-md-9">
-                      <h3><%= comment.content %></h3>
+                  </div>
+                  <div class="comment-details col-md-9">
+                    <h3><%= comment.content %></h3>
+                    <% if current_user.present? && current_user.id == comment.user.id %>
                       <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
+                        <div class="col-md-8 col-md-offset-2">
                           <div class="row">
                             <div class="col-md-6">
                               <p><%= comment.created_at.to_s(:datetime_jp) %></p>
                             </div>
                             <div class="col-md-3">
-                              <p><%= link_to 'コメントの編集', edit_post_comment_path(id: comment.id) %><p>
+                              <p><%= link_to '編集', edit_post_comment_path(id: comment.id) %><p>
                             </div>
                             <div class="col-md-3">
-                              <p><%= link_to 'コメントの削除', post_comment_path(id: comment.id), method: :delete %></p>
+                              <p><%= link_to '削除', post_comment_path(id: comment.id), method: :delete %></p>
                             </div>
                           </div>
                         </div>
-                    </div>
+                      </div>
+                    <% else %>
+                      <p><%= comment.created_at.to_s(:datetime_jp) %></p>
+                    <% end %>
+                  </div>
                 </div>
-            </li>
+              </li>
+            <% end %>
+          <% else %>
+            <h3>まだコメントはありません</h3>
           <% end %>
         </ul>
         <h4><%= paginate @comments %></h4>
