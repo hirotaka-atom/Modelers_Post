@@ -27,12 +27,12 @@
        <div class="ranking-info">
          <% if @rankings.present? %>
           <div class="row">
-            <% @rankings.each.with_index(1) do |post, i| %>
+            <% @rankings.each.with_index(1) do |rank, i| %>
               <div class="col-md-4 top-post-info">
                 <h3><%= "#{i}" %>位</h3>
-                <%= image_tag post.image.url %>
-                <p><%= post.post_tag.name %>タグ</p>
-                <p><%= link_to post.title.truncate(11, omission: '...'), post %></p>
+                <%= image_tag rank.image.url %>
+                <p><%= rank.post_tag.name %>タグ</p>
+                <p><%= link_to rank.title.truncate(11, omission: '...'), rank %></p>
               </div>
             <% end %>
           </div>
@@ -48,15 +48,14 @@
        <div class="top-info">
         <% if @unlikes.present? %>
          <div class="row">
-          <% @unlikes.each do |post| %>
+          <% @unlikes.each do |unlike| %>
             <div class="col-md-2 top-post-info">
-              <%= image_tag post.image.url %>
-              <p><%= post.post_tag.name %>タグ<p>
-              <p><%= link_to post.title.truncate(11, omission: '...'), post %></p>
+              <%= image_tag unlike.image.url %>
+              <p><%= unlike.post_tag.name %>タグ</p>
+              <p><%= link_to unlike.title.truncate(11, omission: '...'), unlike %></p>
             </div>
           <% end %>
          </div>
-         <h4><%= paginate @posts %></h4>
         <% else %>
           <h3>投稿がありません</h3>
         <% end %>

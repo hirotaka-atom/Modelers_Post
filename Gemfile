@@ -5,7 +5,9 @@ ruby '3.0.0'
 
 gem 'paranoia'
 gem 'mechanize'
-gem 'impressionist'
+gem 'impressionist',
+  git: 'git://github.com/charlotte-ruby/impressionist.git',
+  ref: '46a582ff8cd3496da64f174b30b91f9d97e86643'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'rails-i18n'
@@ -34,6 +36,7 @@ gem 'bcrypt'
 gem "carrierwave"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'rexml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -63,6 +66,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'rails-controller-testing'
+  gem 'minitest'
+  gem 'minitest-reporters'
+  gem 'guard'
+  gem 'guard-minitest'
 end
 
 group :production do
