@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
   def set_post_search_query
-    #if params[:q] != nil
+    #if params[:q].present?
       #key_words = params[:q][:user_name_or_post_tag_name_or_title_or_content_cont].split(/[\p{blank}\s]+/)
       #grouping_hash = keywords.reduce({}){|hash, word| hash.merge(word => { user_name_or_post_tag_name_or_title_or_content_cont: word})}
       #@q = Post.ransack({ combinator: 'and', groupings: grouping_hash })

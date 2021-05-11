@@ -17,9 +17,11 @@ class EventsController < ApplicationController
 
   def index
     agent = Mechanize.new
-    page = agent.get("http://plamo.kitasite.net/event/")
-    @elements = page.search('//*[@id="post-1797"]/div/a')
-    @elements = page.search('.entry-content a')
+    #page = agent.get("http://plamo.kitasite.net/event/")
+    #@elements = page.search('//*[@id="post-1797"]/div/a[1]') //*[@id="post-1797"]/a[3]
+    #@elements = page.search('//*[@id="post-1797"]/div/a[1]')
+    #binding.pry
+    #@elements = page.search('.entry-content a')
     @events = Event.page(params[:page]).per(10).order(created_at: :desc)
   end
 
