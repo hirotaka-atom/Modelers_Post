@@ -9,7 +9,38 @@
             <h2><%= @user.name %></h2>
             <p><%= @user.email %></p>
           </div>
-        </div>
+            <% if current_user.present? && current_user != @user %>
+              <% if current_user.following?(@user) %>
+                <div class="col-md-2 col-md-offset-5">
+                  <%= form_for(current_user.relationships.find_by(follow_id: @user.id), html: { method: :delete }) do |f| %>
+                    <%= hidden_field_tag :follow_id, @user.id %>
+                    <%= f.submit 'フォローの解除', class: 'btn btn-danger btn-block' %>
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="col-md-2 col-md-offset-5">
+                  <%= form_for(current_user.relationships.build) do |f| %>
+                    <%= hidden_field_tag :follow_id, @user.id %>
+                    <%= f.submit 'フォローする', class: 'btn btn-primary btn-block' %>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+            <% if current_user.present? %>
+              <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-6">
+                  <%= link_to followings_user_path(@user) do %>
+                    <p>フォロー数: <%= @user.followings.count %></p>
+                  <% end %>
+                </div>
+                <div class="col-md-6">
+                  <%= link_to followers_user_path(@user) do %>
+                    <p>フォロワー数: <%= @user.followers.count %></p>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
         <div class="form-bottom">
           <% if current_user.present? && current_user.id == @user.id %>
             <p><%= link_to '編集', edit_user_path(id: @user.id) %></p>

@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   get 'search/index'
 
-  resources :users
+  resources :users do
+    member do
+      get :followings, :followers
+    end
+  end
   resources :events
   resources :post_tags
   resources :bravo_tags
@@ -19,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :favorites
+  resources :relationships, only: [:create, :destroy]
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

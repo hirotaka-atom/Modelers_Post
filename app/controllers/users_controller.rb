@@ -46,6 +46,16 @@ class UsersController < ApplicationController
     redirect_to root_path, success: "ユーザーを削除しました"
   end
 
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.followings.page(params[:page]).per(20)
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers.page(params[:page]).per(20)
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :image, :email, :password, :password_confirmation, :admin)
