@@ -1,0 +1,17 @@
+<div class="posts-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-center title-text">パスワードを忘れた場合</h1>
+        <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+          <div class="form-group">
+            <%= f.label :email, class: 'text-white' %>
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
+
+          <%= f.submit '送信', class: 'btn btn-black btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

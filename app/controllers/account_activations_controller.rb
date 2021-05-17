@@ -1,4 +1,6 @@
 class AccountActivationsController < ApplicationController
+  before_action :set_post_search_query
+
   def edit
     user = User.find_by(email: params[:email])
     if user && !user.activated? && user.authenticated?(:activation, params[:id])
@@ -7,7 +9,7 @@ class AccountActivationsController < ApplicationController
       flash[:success] = "アカウントの有効化が完了しました"
       redirect_to user
     else
-      flash[:danger] = "Invalid activation link"
+      flash[:danger] = "アドレスが無効です"
       redirect_to root_url
     end
   end

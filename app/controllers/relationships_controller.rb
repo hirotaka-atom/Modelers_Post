@@ -1,4 +1,5 @@
 class RelationshipsController < ApplicationController
+  before_action :set_post_search_query
 
   def create
     following = current_user.follow(follow_params)
@@ -15,9 +16,8 @@ class RelationshipsController < ApplicationController
   end
 
   private
-
-  def follow_params
-    @user = User.find(params[:follow_id])
-  end
-
+  
+    def follow_params
+      @user = User.find(params[:follow_id])
+    end
 end

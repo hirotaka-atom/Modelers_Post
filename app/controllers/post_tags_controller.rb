@@ -38,6 +38,7 @@ class PostTagsController < ApplicationController
   end
 
   private
+  
     def post_tag_params
       params.require(:post_tag).permit(:name)
     end

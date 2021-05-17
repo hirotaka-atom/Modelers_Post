@@ -30,6 +30,7 @@ class BravosController < ApplicationController
   end
 
   private
+  
     def bravo_params
       params.require(:bravo).permit(:bravo_tag_id)
     end
