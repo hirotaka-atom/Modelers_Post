@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    redirect_to root_url and return unless @user.activated == true
+    redirect_to root_url and return unless @user.activated?
     flash[:danger] = "不正な操作です"
     @posts = Post.where(user_id: params[:id]).page(params[:page]).per(10)
     @bravo_posts = @user.bravo_posts.page(params[:page]).per(10)
