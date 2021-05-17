@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       UserMailer.account_activation(@user).deliver_now
-      redirect_to root_path, info: "メールを確認し、アカウントを有効にしてください"
+      redirect_to root_url, info: "メールを確認し、アカウントを有効にしてください"
     else
       render :new
     end
