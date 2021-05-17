@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get :followings, :followers
     end
   end
+  resources :account_activations, only: [:edit]
   resources :events
   resources :post_tags
   resources :bravo_tags

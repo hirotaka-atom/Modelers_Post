@@ -44,7 +44,7 @@
             <p><%= link_to '編集', edit_user_path(id: @user.id) %></p>
             <p><%= link_to '削除', user_path(id: @user.id), method: :delete %></p>
           <% end %>
-          <% if current_user.present? && current_user.admin == true %>
+          <% if current_user.present? && current_user.id == @user.id && current_user.admin == true %>
             <p><%= link_to 'ユーザー一覧', users_path %></p>
             <p><%= link_to '投稿用タグ一覧', post_tags_path %></p>
             <p><%= link_to '投稿用タグ作成', new_post_tag_path %></p>

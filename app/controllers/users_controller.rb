@@ -11,18 +11,22 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path, success: "登録が完了しました"
+      @user.send_activation_email
+      UserMailer.account_activation(@user).deliver_now
+      redirect_to root_path, info: "メールを確認し、アカウントを有効にしてください"
     else
       render :new
     end
   end
 
   def index
-    @users = User.page(params[:page]).per(20).order(created_at: :desc)
+    @users = User.where(activated: true).page(params[:page]).per(20).order(created_at: :desc)
   end
 
   def show
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated == true
+    flash[:danger] = "不正な操作です"
     @posts = Post.where(user_id: params[:id]).page(params[:page]).per(10)
     @bravo_posts = @user.bravo_posts.page(params[:page]).per(10)
     @favorite_posts = @user.favorite_posts.page(params[:page]).per(10)
