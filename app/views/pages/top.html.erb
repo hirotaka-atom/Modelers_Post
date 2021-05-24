@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-       <h1 class="title-text">新しい投稿はこちら</h1>
+       <h2 class="title-text">新しい投稿はこちら</h2>
        <div class="top-info">
          <% if @posts.present? %>
           <div class="row">
@@ -16,14 +16,14 @@
           </div>
           <h4><%= paginate @posts %></h4>
         <% else %>
-          <h3>投稿がありません</h3>
+          <h3 class="nopost">投稿がありません</h3>
         <% end %>
        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-       <h1 class="title-text">注目度ランキング</h1>
+       <h2 class="title-text">注目度ランキング</h2>
        <div class="ranking-info">
          <% if @rankings.present? %>
           <div class="row">
@@ -37,14 +37,14 @@
             <% end %>
           </div>
         <% else %>
-          <h3>まだ閲覧された投稿がありません</h3>
+          <h3 class="nopost">まだ閲覧された投稿がありません</h3>
         <% end %>
        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-       <h1 class="title-text">まだ見られていない投稿はこちら</h1>
+       <h2 class="title-text">まだ見られていない投稿はこちら</h2>
        <div class="top-info">
         <% if @unlikes.present? %>
          <div class="row">
@@ -57,10 +57,11 @@
           <% end %>
          </div>
         <% else %>
-          <h3>投稿がありません</h3>
+          <h3 class="nopost">投稿がありません</h3>
         <% end %>
        </div>
       </div>
     </div>
   </div>
+  <%= render 'layouts/footer' %>
 </div>

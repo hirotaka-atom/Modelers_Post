@@ -11,52 +11,46 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <ul class="nav navbar-nav">
-            <li>
-              <%= link_to  'トップページへ', root_path %>
-            </li>
-            <li>
-              <%= link_to 'ModelersPostとは', pages_about_path %>
-            </li>
-            <% if logged_in? %>
-              <li>
-                <%= link_to "アカウント", "/users/#{current_user.id}" %>
-              </li>
-              <li>
-                <%= link_to '新規投稿', new_post_path %>
-              </li>
-            <% else %>
-              <li>
-                <%= link_to '新規登録', new_user_path %>
-              </li>
-              <li>
-                <%= link_to 'ログイン', login_path %>
-              </li>
-            <% end %>
-            <li>
-              <%= link_to '投稿一覧', posts_path %>
-            </li>
-            <li>
-              <%= link_to 'イベント情報', events_path %>
-            </li>
-            <% if logged_in? %>
-              <li>
-                <%= link_to 'ログアウトする', logout_path, method: :delete %>
-              </li>
-            <% end %>
-            <li class="search-form">
-              <%= search_form_for @q, url: search_index_path do |f| %>
-              <%= f.search_field :user_name_or_post_tag_name_or_title_or_content_cont, required: true %>
-              <%= f.submit '検索する' %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
+    <!--ヘッダー-->
+    <header>
+
+
+<!--▽▽ヘッダーロゴ▽▽-->
+      <div class="logo">
+          <a href="#">ModelersPost</a>
       </div>
-    </nav>
+<!--△△ヘッダーロゴ△△-->
+
+
+<!--▽▽ハンバーガーメニュー▽▽-->
+      <div id="hamburger">
+          <div class="icon">
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+      </div>
+<!--△△ハンバーガーメニュー△△-->
+
+
+<!--▽▽ハンバーガーメニューのリスト▽▽-->
+      <nav class="sm">
+        <%= render 'layouts/header_menu' %>
+     </nav>
+<!--△△ハンバーガーメニューのリスト△△-->
+
+
+<!--▽▽ヘッダーリスト▽▽-->
+      <nav class="pc">  <!--pcクラスを追記-->
+        <%= render 'layouts/header_menu' %>
+      </nav>
+<!--△△ヘッダーリスト△△-->
+
+
+    </header>
+
+
+
     <% flash.each do |key, value| %>
       <div id="alert" class="alert alert-<%= key %> text-center" role="alert"><%= value %></div>
     <% end %>
