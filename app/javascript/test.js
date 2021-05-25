@@ -25,4 +25,7 @@ $(function(){
 });
 
 $(function(){
+  $('.sub-menu').on('click', function(){
+    $('.dropdown-menu').slideToggle();
+  });
 })
