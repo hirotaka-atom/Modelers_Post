@@ -16,7 +16,7 @@ header {
   background-color: rgba(34, 49, 52, 0.9);
   position: fixed;
   top: 0;
-  z-index: 10;
+  z-index: 11;
   display: flex;
   .logo {
     font-size: 25px;
@@ -60,6 +60,90 @@ header {
       padding: 0 20px;
     }
   }
+}
+
+#tabcontrol a {
+   display: inline-block;            /* インラインブロック化 */
+   border-width: 1px 1px 0px 1px;    /* 下以外の枠線を引く */
+   border-style: solid;              /* 枠線の種類：実線 */
+   border-color: black;              /* 枠線の色：黒色 */
+   border-radius: 0.75em 0.75em 0 0; /* 枠線の左上角と右上角だけを丸く */
+   padding: 0.75em 1em;              /* 内側の余白 */
+   text-decoration: none;            /* リンクの下線を消す */
+   color: black;                     /* 文字色：黒色 */
+   background-color: white;          /* 背景色：白色 */
+   font-weight: bold;                /* 太字 */
+   position: relative;             /* JavaScriptでz-indexを調整するために必要 */
+}
+/* ▼タブにマウスポインタが載った際(任意) */
+#tabcontrol a:hover {
+   text-decoration: underline;       /* 文字に下線を引く */
+}
+
+#tabbody ul {
+   border: 1px solid black; /* 枠線：黒色の実線を1pxの太さで引く */
+   margin-top: -1px;        /* 上側にあるタブと1pxだけ重ねるために「-1px」を指定 */
+   padding: 1em;            /* 内側の余白量 */
+   background-color: white; /* 背景色：白色 */
+   position: relative;      /* z-indexを調整するために必要 */
+   z-index: 0;              /* 重なり順序を「最も背面」にするため */
+}
+
+#tabcontrol a:nth-child(1), #tabbody li:nth-child(1) { background-color: #ffffdd; }/* 1つ目のタブとその中身用の配色 */
+#tabcontrol a:nth-child(2), #tabbody li:nth-child(2) { background-color: #ddffdd; }/* 2つ目のタブとその中身用の配色 */
+#tabcontrol a:nth-child(3), #tabbody li:nth-child(3) { background-color: #ddddff; }/* 3つ目のタブとその中身用の配色 */
+
+.tab-content {
+  position: relative;
+  overflow: hidden;
+  &.is-animating {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    right: 15px;
+    width: auto;
+  }
+}
+
+.content-pane {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(100%) translateY(-50%);
+  &.is-active {
+    position: relative;
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  &.is-exiting {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  &.is-animating {
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+  }
+}
+
+// optional styling for CodePen example
+.nav-tabs li.active a {
+  background: #f8f8f8!important;
+  border-bottom-color: transparent!important;
+}
+.nav-tabs li:not(.active) {
+  border-bottom: 1px solid black;
+}
+.tab-content {
+  margin-top: -1px;
+  border: 1px solid #ddd;
+  border-top: none;
+  padding: 50px 20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: #f8f8f8;
 }
 
 
@@ -216,7 +300,7 @@ header {
     }
     p {
       word-break: break-all;
-      margin-top: 20px;
+      //margin-top: 20px;
       font-size: 1.5em;
     }
     .post-details {

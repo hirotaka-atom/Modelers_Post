@@ -55,137 +55,136 @@
         </div>
       </div>
     </div>
-    <div class="row">
-    <div class="index col-md-10 col-md-offset-1">
-      <div class="row">
-      <div class="posts-index col-md-4">
-        <h4 id="1">投稿一覧</h4>
-      </div>
-      <div class="bravos-index col-md-4">
-        <h4 id="2">いいね一覧</h4>
-      </div>
-      <div class="favorites-index col-md-4">
-        <h4 id="3">お気に入り一覧</h4>
-      </div>
-      </div>
-    </div>
-    </div>
-    <div class="index-frame-p">
-      <div class="posts">
-        <% if @posts.present? %>
-          <% @posts.each do |post| %>
-            <div class="post-info">
-              <div class="row">
-              <div class="user-details col-md-2">
-                <%= image_tag post.user.image.url %>
-                <div class="row">
-                  <div class="col-md-6 col-md-offset-3">
-                    <p><%= link_to post.user.name, post.user %></p>
-                  </div>
-                </div>
+
+    <div id="wrapper">
+      <div class="container">
+        <ul class="nav nav-tabs nav-justified">
+          <li class="active"><a href="#tab1" class="text-uppercase">Tab 1</a></li>
+          <li><a href="#tab2" class="text-uppercase">Tab 2</a></li>
+          <li><a href="#tab3" class="text-uppercase">Tab 3</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="tab1" class="content-pane is-active">
+              <div class="posts">
+                <% if @posts.present? %>
+                  <% @posts.each do |post| %>
+                    <div class="post-info">
+                      <div class="row">
+                      <div class="user-details col-md-2">
+                        <%= image_tag post.user.image.url %>
+                        <div class="row">
+                          <div class="col-md-6 col-md-offset-3">
+                            <p><%= link_to post.user.name, post.user %></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="post-details col-md-10">
+                        <div>
+                          <h3><%= link_to post.title, post %></h3>
+                          <h7>投稿タグ: <%= post.post_tag.name %></h7>
+                        </div>
+                        <div class="post-contents">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <%= image_tag post.image.url %>
+                            </div>
+                            <div class="col-md-8">
+                              <p><%= post.content %></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <h3>投稿がありません</h3>
+                <% end %>
               </div>
-              <div class="post-details col-md-10">
-                <div>
-                  <h3><%= link_to post.title, post %></h3>
-                  <h7>投稿タグ: <%= post.post_tag.name %></h7>
-                </div>
-                <div class="post-contents">
+              <h4><%= paginate @posts %></h4>
+          </div>
+
+          <div id="tab2" class="content-pane">
+            <div class="posts">
+              <% if @bravo_posts.present? %>
+                <% @bravo_posts.each do |post| %>
+                <div class="post-info">
                   <div class="row">
-                    <div class="col-md-4">
-                      <%= image_tag post.image.url %>
+                  <div class="user-details col-md-2">
+                    <%= image_tag post.user.image.url %>
+                    <div class="row">
+                      <div class="col-md-6 col-md-offset-3">
+                        <p><%= link_to post.user.name, post.user %></p>
+                      </div>
                     </div>
-                    <div class="col-md-8">
-                      <p><%= post.content %></p>
+                  </div>
+                  <div class="post-details col-md-10">
+                    <div>
+                      <h3><%= link_to post.title, post %></h3>
+                      <h7>投稿タグ: <%= post.post_tag.name %></h7>
+                    </div>
+                    <div class="post-contents">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= image_tag post.image.url %>
+                        </div>
+                        <div class="col-md-8">
+                          <p><%= post.content %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <% end %>
+              <% else %>
+                <h3>いいねした投稿がありません</h3>
+              <% end %>
+            </div>
+            <h4><%= paginate @bravo_posts %></h4>
+          </div>
+
+          <div id="tab3" class="content-pane">
+            <div class="posts">
+              <% if @favorite_posts.present? %>
+                <% @favorite_posts.each do |post| %>
+                <div class="post-info">
+                  <div class="row">
+                    <div class="user-details col-md-2">
+                      <%= image_tag post.user.image.url %>
+                      <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                          <p><%= link_to post.user.name, post.user %></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-details col-md-10">
+                      <div>
+                        <h3><%= link_to post.title, post %></h3>
+                        <h7>投稿タグ: <%= post.post_tag.name %></h7>
+                      </div>
+                      <div class="post-contents">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <%= image_tag post.image.url %>
+                          </div>
+                          <div class="col-md-8">
+                            <p><%= post.content %></p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <% end %>
+                <% else %>
+                <h3>お気に入り登録した投稿がありません</h3>
+                <% end %>
               </div>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <h3>投稿がありません</h3>
-        <% end %>
-      </div>
-      <h4><%= paginate @posts %></h4>
-    </div>
-    <div class="index-frame-b">
-      <div class="posts">
-        <% if @bravo_posts.present? %>
-          <% @bravo_posts.each do |post| %>
-          <div class="post-info">
-            <div class="row">
-            <div class="user-details col-md-2">
-              <%= image_tag post.user.image.url %>
-              <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                  <p><%= link_to post.user.name, post.user %></p>
-                </div>
-              </div>
-            </div>
-            <div class="post-details col-md-10">
-              <div>
-                <h3><%= link_to post.title, post %></h3>
-                <h7>投稿タグ: <%= post.post_tag.name %></h7>
-              </div>
-              <div class="post-contents">
-                <div class="row">
-                  <div class="col-md-4">
-                    <%= image_tag post.image.url %>
-                  </div>
-                  <div class="col-md-8">
-                    <p><%= post.content %></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
+              <h4><%= paginate @favorite_posts %></h4>
           </div>
-          <% end %>
-        <% else %>
-          <h3>いいねした投稿がありません</h3>
-        <% end %>
+        </div>
       </div>
-      <h4><%= paginate @bravo_posts %></h4>
-    </div>
-    <div class="index-frame-f">
-      <div class="posts">
-        <% if @favorite_posts.present? %>
-          <% @favorite_posts.each do |post| %>
-          <div class="post-info">
-            <div class="row">
-            <div class="user-details col-md-2">
-              <%= image_tag post.user.image.url %>
-              <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                  <p><%= link_to post.user.name, post.user %></p>
-                </div>
-              </div>
-            </div>
-            <div class="post-details col-md-10">
-              <div>
-                <h3><%= link_to post.title, post %></h3>
-                <h7>投稿タグ: <%= post.post_tag.name %></h7>
-              </div>
-              <div class="post-contents">
-                <div class="row">
-                  <div class="col-md-4">
-                    <%= image_tag post.image.url %>
-                  </div>
-                  <div class="col-md-8">
-                    <p><%= post.content %></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
-          </div>
-          <% end %>
-        <% else %>
-          <h3>お気に入り登録した投稿がありません</h3>
-        <% end %>
-      </div>
-      <h4><%= paginate @favorite_posts %></h4>
-    </div>
   </div>
 </div>
